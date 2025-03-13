@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Capture Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            width: 40%;
+            height: 60%;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            height: 40px;
+            appearance: none;
+            background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M7 10l5 5 5-5z" fill="black"/></svg>') no-repeat right 10px center;
+            background-size: 20px;
+            padding-right: 30px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background: #d71920;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background: #a81418;
+        }
+
+        .section-header {
+            background: #d71920;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            margin: 20px 0 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        select[multiple] {
+            height: auto;
+            min-height: 120px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- <img src="/bagjump-logo.png" style="display: block; margin: 20px auto;"> -->
+    
+    <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DAs00000nh869" method="POST">
+        
+        <!-- <img src="/bagjump-logo.png" alt="BAGJUMP Logo" width="200" style=""> -->
+
+        <input type="hidden" name="oid" value="00DAs00000nh869">
+        <input type="hidden" name="retURL" value="http://bagjump.com">
+    
+        <div class="section-header">Personal Details</div>
+
+        <label for="salutation">Salutation</label>
+        <select id="salutation" name="salutation">
+            <option value="">--None--</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Ms.">Ms.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Dr.">Dr.</option>
+            <option value="Prof.">Prof.</option>
+            <option value="Mx.">Mx.</option>
+        </select>
+
+        <label for="first_name">First Name</label>
+        <input id="first_name" maxlength="40" name="first_name" size="20" type="text" required/>
+
+        <label for="last_name">Last Name</label>
+        <input id="last_name" maxlength="80" name="last_name" size="20" type="text" required/>
+
+        <label for="email">Email</label>
+        <input id="email" maxlength="80" name="email" size="20" type="text" required/>
+
+        <label for="phone">Phone</label>
+        <input id="phone" maxlength="40" name="phone" size="20" type="text" required/>
+
+        <div class="section-header">Company Details</div>
+
+        <label for="company">Company Name</label>
+        <input id="company" maxlength="40" name="company" size="20" type="text" />
+
+        <label for="url">Website</label>
+        <input id="url" maxlength="80" name="url" size="20" type="text" />
+
+        <div class="section-header">What Are You Interested In?</div>
+
+        <label for="00NAs000009IBxV">Product Category</label>
+        <select id="00NAs000009IBxV" multiple="multiple" name="00NAs000009IBxV" title="Product Category" required>
+            <option value="Airpit Airbags">Airpit Airbags</option>
+            <option value="Allround Airbag">Allround Airbag</option>
+            <option value="Custom Airbag">Custom Airbag</option>
+            <option value="Jump And Slide Park">Jump And Slide Park</option>
+            <option value="Landing Airbags">Landing Airbags</option>
+        </select>
+
+        <div class="section-header">Address</div>
+
+        <label for="street">Street</label>
+        <textarea name="street" required></textarea>
+
+        <label for="city">City</label>
+        <input id="city" maxlength="40" name="city" size="20" type="text" required/>
+
+        <label for="zip">Zip</label>
+        <input id="zip" maxlength="20" name="zip" size="20" type="text" required/>
+
+        <label for="state">State/Province</label>
+        <input id="state" maxlength="20" name="state" size="20" type="text" required/>
+
+        <label for="country">Country</label>
+        <input id="country" maxlength="40" name="country" size="20" type="text" required/>
+
+        <div class="section-header">Description</div>
+        <input  id="lead_source" name="lead_source" value="Web" hidden />
+        <label for="description">Description</label>
+        <textarea name="description" required></textarea>
+
+        <input type="submit" name="submit" value="Submit">
+    </form>
+
+</body>
+</html>
