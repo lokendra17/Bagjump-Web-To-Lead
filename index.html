@@ -11,7 +11,7 @@
         }
 
         form {
-            width: 60%;
+            width: 30%;
             margin: 20px auto;
             background: white;
             padding: 20px;
@@ -34,10 +34,14 @@
         textarea,
         select {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333;
+            transition: border-color 0.3s ease;
         }
 
         select {
@@ -51,7 +55,7 @@
 
         input[type="submit"] {
             width: 100%;
-            background: #007bff;
+            background: #172a59;
             color: white;
             padding: 10px;
             border: none;
@@ -61,16 +65,17 @@
         }
 
         input[type="submit"]:hover {
-            background: #0056b3;
+            background: #101d3d;
         }
 
         .section-header {
-            background: #ddd;
+            background: #172a59;
             padding: 10px;
             font-weight: bold;
             margin: 20px 0 10px;
             border-radius: 5px;
             text-align: center;
+            color: #f0f0f0;
         }
 
         .multiselect {
@@ -121,12 +126,21 @@
         .options-container label:hover {
             background: #f0f0f0;
         }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+          }
     </style>
 </head>
 <body>
 
     <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DAs00000nh869" method="POST">
-    
+        
+        <img src="/bagjump-logo.png" alt="BAGJUMP Logo" class="center">
+
         <input type="hidden" name="oid" value="00DAs00000nh869">
         <input type="hidden" name="retURL" value="http://bagjump.com">
     
@@ -175,6 +189,24 @@
         <textarea name="description" required></textarea>
         <input  id="lead_source" name="lead_source" value="Web" hidden />
 
+        <div class="section-header">Address</div>
+
+        <label for="street">Street</label>
+        <textarea name="street" required></textarea>
+
+        <label for="city">City</label>
+        <input id="city" name="city" type="text" required/>
+
+        <label for="zip">Zip</label>
+        <input id="zip" name="zip" type="text" required/>
+
+        <label for="state">State/Province</label>
+        <input id="state" name="state" type="text" required/>
+
+        <label for="country">Country</label>
+        <input id="country" name="country" type="text" required/>
+        <br><br>
+        
         <input type="submit" value="Submit">
     </form>
 
