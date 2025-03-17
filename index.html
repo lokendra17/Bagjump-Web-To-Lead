@@ -128,38 +128,44 @@
             margin-right: auto;
             width: 50%;
           }
+
+          sup {
+            vertical-align: super;
+            font-size: large;
+            color: red;
+  }
     </style>
 </head>
 <body>
   <div class="Main-container">
-    <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DAs00000nh869" method="POST">
+    <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DAs00000nh869" method="POST" onsubmit="return validateForm()">
         
         <img src="/bagjump-logo.png" alt="BAGJUMP Logo" class="center">
         <input type="hidden" name="oid" value="00DAs00000nh869">
         <input type="hidden" name="retURL" value="https://lokendra17.github.io/Bagjump-Thank-You-Page">
     
         <div class="section-header">Personal Details</div>
-        <label for="first_name">First Name</label>
+        <label for="first_name">First Name <sup>*</sup></label>
         <input id="first_name" name="first_name" type="text" required/>
-        <label for="last_name">Last Name</label>
+        <label for="last_name">Last Name <sup>*</sup></label>
         <input id="last_name" name="last_name" type="text" required/>
-        <label for="email">Email</label>
+        <label for="email">Email <sup>*</sup></label>
         <input id="email" name="email" type="email" required/>
-        <label for="phone">Phone</label>
-        <input id="phone" name="phone" type="text" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required/>
+        <label for="phone">Phone <sup>*</sup></label>
+        <input id="phone" name="phone" type="text" required/>
         <div class="section-header">Company Details</div>
-        <label for="company">Company Name</label>
+        <label for="company">Company Name </label>
         <input id="company" name="company" type="text" />
-        <label for="url">Website</label>
+        <label for="url">Website </label>
         <input id="url" name="url" type="text" />
         <div class="section-header">What Are You Interested In?</div>
-        <label for="product_category">Product Category</label>
+        <label for="product_category">Product Category <sup>*</sup></label>
         <div class="multiselect" onclick="toggleDropdown(event)">
             <div class="select-box">
                 <span id="selected-options">Select Product Categories</span>
                 <span>&#9662;</span>
             </div>
-            <div class="options-container" id="options">
+            <div class="options-container" id="options" >
                 <label><input type="checkbox" value="Airpit Airbags" onchange="updateSelection(this)"> Airpit Airbags</label>
                 <label><input type="checkbox" value="Allround Airbag" onchange="updateSelection(this)"> Allround Airbag</label>
                 <label><input type="checkbox" value="Custom Airbag" onchange="updateSelection(this)"> Custom Airbag</label>
@@ -170,23 +176,23 @@
         <input type="hidden" id="selected-values" name="00NAs000009IBxV">
         
         
-        <div class="section-header">Address</div>
-        <label for="street">Street</label>
+        <div class="section-header">Address </div>
+        <label for="street">Street <sup>*</sup></label>
         <textarea name="street" required></textarea>
-        <label for="city">City</label>
+        <label for="city">City <sup>*</sup></label>
         <input id="city" name="city" type="text" required/>
-        <label for="zip">Zip</label>
+        <label for="zip">Zip <sup>*</sup></label>
         <input id="zip" name="zip" type="text" required/>
-        <label for="state">State/Province</label>
+        <label for="state">State/Province <sup>*</sup></label>
         <input id="state" name="state" type="text" required/>
-        <label for="Country Code">Country Code</label>
-        <input  id="00NAs000009OUuD" maxlength="2" name="00NAs000009OUuD" size="20" type="text" required/>
-        <label for="country">Country</label>
+        <!-- <label for="Country Code">Country Code</label>
+        <input  id="00NAs000009OUuD" maxlength="2" name="00NAs000009OUuD" size="20" type="text" required/> -->
+        <label for="country">Country <sup>*</sup></label>
         <input id="country" name="country" type="text" required/>
         
         <div class="section-header">Description</div>
         <label for="description">Description</label>
-        <textarea name="description" required></textarea>
+        <textarea name="description"></textarea>
         <input  id="lead_source" name="lead_source" value="Web" hidden />
         <br><br>
         <input type="submit" value="Submit">
@@ -220,6 +226,51 @@
                 }
             });
             hiddenField.value = selected.join(";");
+        }
+
+
+        function validateForm() {
+            // Regular expression to allow only letters (with spaces)
+            let namePattern = /^[A-Za-z\s]+$/; // Allows only letters and spaces
+            // Regular expression for US phone numbers
+            let phonePattern = /^(?:\+1\s?)?(\(\d{3}\)|\d{3})[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    
+            // Fields to validate for alphabetic input
+            let fields = [
+                { id: "first_name", name: "First Name" },
+                { id: "last_name", name: "Last Name" },
+                { id: "company", name: "Company Name" },
+                { id: "city", name: "City" },
+                { id: "state", name: "State" },
+                { id: "country", name: "Country" }
+            ];
+    
+            // Loop through each field and validate alphabetic characters
+            for (let field of fields) {
+                let value = document.getElementById(field.id).value.trim();
+                if (!namePattern.test(value)) {
+                    alert(field.name + " must contain only letters. No numbers or special characters allowed.");
+                    return false; // Prevent form submission
+                }
+            }
+    
+            // Validate US Phone Number
+            let phone = document.getElementById("phone").value.trim();
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid US phone number (e.g., 123-456-7890, (123) 456-7890, or +1 123-456-7890).");
+                return false; // Prevent form submission
+            }
+    
+            // Validate Product Category (at least one checkbox selected)
+            let checkboxes = document.querySelectorAll(".options-container input[type='checkbox']");
+            let isChecked = Array.from(checkboxes).some(cb => cb.checked);
+            
+            if (!isChecked) {
+                alert("Please select at least one Product Category.");
+                return false; // Prevent form submission
+            }
+    
+            return true; // Allow form submission
         }
     </script>
 </body>
