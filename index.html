@@ -8,8 +8,18 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f8f8;
+            
+           
         }
-
+        .Main-container{
+            width: auto;
+            height: 50rem;
+            overflow: scroll;
+            padding: 10px;
+            
+          
+            
+        }
         form {
             width: 40%;
             margin: 20px auto;
@@ -18,17 +28,14 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         h2 {
             text-align: center;
         }
-
         label {
             font-weight: bold;
             display: block;
             margin: 10px 0 5px;
         }
-
         input[type="text"],
         input[type="email"],
         textarea,
@@ -43,16 +50,13 @@
             color: #333;
             transition: border-color 0.3s ease;
         }
-
         select {
             height: 35px;
         }
-
         textarea {
             resize: vertical;
             height: 60px;
         }
-
         input[type="submit"] {
             width: 100%;
             background: #172a59;
@@ -63,11 +67,9 @@
             font-size: 16px;
             cursor: pointer;
         }
-
         input[type="submit"]:hover {
             background: #101d3d;
         }
-
         .section-header {
             background: #172a59;
             padding: 10px;
@@ -77,12 +79,10 @@
             text-align: center;
             color: #f0f0f0;
         }
-
         .multiselect {
             width: 100%;
             position: relative;
         }
-
         .select-box {
             display: flex;
             flex-wrap: wrap;
@@ -94,7 +94,6 @@
             background: white;
             min-height: 35px;
         }
-
         .pill {
             background: #007bff;
             color: white;
@@ -104,7 +103,6 @@
             font-size: 12px;
             display: inline-block;
         }
-
         .options-container {
             display: none;
             position: absolute;
@@ -116,17 +114,14 @@
             overflow-y: auto;
             z-index: 10;
         }
-
         .options-container label {
             display: block;
             padding: 8px;
             cursor: pointer;
         }
-
         .options-container label:hover {
             background: #f0f0f0;
         }
-
         .center {
             display: block;
             margin-left: auto;
@@ -136,38 +131,28 @@
     </style>
 </head>
 <body>
-
+  <div class="Main-container">
     <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DAs00000nh869" method="POST">
         
         <img src="/bagjump-logo.png" alt="BAGJUMP Logo" class="center">
-
         <input type="hidden" name="oid" value="00DAs00000nh869">
-        <input type="hidden" name="retURL" value="https://lokendra17.github.io/Bagjump-Thank-You-Page/">
+        <input type="hidden" name="retURL" value="http://bagjump.com">
     
         <div class="section-header">Personal Details</div>
-
         <label for="first_name">First Name</label>
         <input id="first_name" name="first_name" type="text" required/>
-
         <label for="last_name">Last Name</label>
         <input id="last_name" name="last_name" type="text" required/>
-
         <label for="email">Email</label>
         <input id="email" name="email" type="email" required/>
-
         <label for="phone">Phone</label>
-        <input id="phone" name="phone" type="text" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required/>
-
+        <input id="phone" name="phone" type="text" pattern="[6]{3}[0-9]{3}[0-9]{4}" title="Please enter your phone number in the format: 9999988888" required/>
         <div class="section-header">Company Details</div>
-
         <label for="company">Company Name</label>
         <input id="company" name="company" type="text" />
-
         <label for="url">Website</label>
         <input id="url" name="url" type="text" />
-
         <div class="section-header">What Are You Interested In?</div>
-
         <label for="product_category">Product Category</label>
         <div class="multiselect" onclick="toggleDropdown(event)">
             <div class="select-box">
@@ -185,28 +170,20 @@
         <input type="hidden" id="selected-values" name="00NAs000009IBxV">
         
         
-
         <div class="section-header">Address</div>
-
         <label for="street">Street</label>
         <textarea name="street" required></textarea>
-
         <label for="city">City</label>
         <input id="city" name="city" type="text" required/>
-
         <label for="zip">Zip</label>
         <input id="zip" name="zip" type="text" required/>
-
         <label for="state">State/Province</label>
         <input id="state" name="state" type="text" required/>
-
         <label for="Country Code">Country Code</label>
         <input  id="00NAs000009OUuD" maxlength="2" name="00NAs000009OUuD" size="20" type="text" required/>
-
         <label for="country">Country</label>
         <input id="country" name="country" type="text" required/>
         
-
         <div class="section-header">Description</div>
         <label for="description">Description</label>
         <textarea name="description" required></textarea>
@@ -215,23 +192,20 @@
         <input type="submit" value="Submit">
         <br>
         <br>
-
     </form>
-
+  </div>
     <script>
         function toggleDropdown(event) {
             let options = document.getElementById("options");
             options.style.display = options.style.display === "block" ? "none" : "block";
             event.stopPropagation();
         }
-
         document.addEventListener("click", function(event) {
             let options = document.getElementById("options");
             if (!event.target.closest(".multiselect")) {
                 options.style.display = "none";
             }
         });
-
         function updateSelection(checkbox) {
             let selectedOptions = document.getElementById("selected-options");
             let hiddenField = document.getElementById("selected-values");
